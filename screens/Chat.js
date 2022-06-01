@@ -13,17 +13,16 @@ export default function Chat({navigation}) {
     };
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => {
+            headerRight: () => (
                 <TouchableOpacity
                     style={{
-                        marginRight:10,
-                        borderRadius: 10,
+                        marginRight:10
                     }}
                     onPress={onSignOut}
                 >
                     <Text>Se déconnecter</Text>
                 </TouchableOpacity>
-            }
+            )
         });
     }, [navigation]);
 
@@ -63,7 +62,7 @@ export default function Chat({navigation}) {
             onSend={messages => onSend(messages)}
             user={{
                 _id: auth?.currentUser?.email,
-                avatar: 'https://i.pravatar.cc/300'
+                avatar: 'https://i.pravatar.cc/700'
             }}
         ></GiftedChat>
     );
