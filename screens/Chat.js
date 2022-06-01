@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useLayoutEffect, useCallback} from 'react';
-import { TouchableOpacity, Text } from 'react-native-web';
+import { TouchableOpacity, Text } from 'react-native';
 import {GiftedChat} from 'react-native-gifted-chat';
 import { collection, addDoc, orderBy, query, onSnapshot } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
@@ -62,8 +62,9 @@ export default function Chat({navigation}) {
             onSend={messages => onSend(messages)}
             user={{
                 _id: auth?.currentUser?.email,
-                avatar: 'https://i.pravatar.cc/700'
+                avatar: 'https://i.pravatar.cc/700',
             }}
+            isTyping={true}
         ></GiftedChat>
     );
 }

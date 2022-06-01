@@ -1,7 +1,8 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, Button, TextInput, ActivityIndicator } from "react-native-web";
+import { StyleSheet, Text, View, Button,TextInput, ActivityIndicator } from 'react-native';
+// import { StyleSheet, Text, View, Button, TextInput, ActivityIndicator } from "react-native-web";
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebase';
 
@@ -15,7 +16,7 @@ const Stack = createStackNavigator();
 function ChatStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Chat' component={Chat} />
+      <Stack.Screen name='Chat' component={Chat} ></Stack.Screen>
     </Stack.Navigator>
   );
 }
@@ -23,8 +24,8 @@ function ChatStack() {
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='Login' component={Login} />
-      <Stack.Screen name='Signup' component={Signup} />
+      <Stack.Screen name='Login' component={Login} ></Stack.Screen>
+      <Stack.Screen name='Signup' component={Signup} ></Stack.Screen>
     </Stack.Navigator>
   );
 }
@@ -49,7 +50,7 @@ function RootNavigator() {
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size='large' />
+        <ActivityIndicator size='large'></ActivityIndicator>
       </View>
     );
   }
@@ -76,7 +77,7 @@ const AuthenticatedUserProvider = ({ children }) => {
 export default function App() {
   return (
     <AuthenticatedUserProvider>
-      <RootNavigator />
+      <RootNavigator></RootNavigator>
     </AuthenticatedUserProvider>
   );
 }
