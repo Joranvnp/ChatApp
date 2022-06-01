@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       borderWidth: 1,
       borderColor: '#333',
-      borderRadius: 10,
-      padding: 15
+      borderRadius: 8,
+      padding: 12
     },
   });
