@@ -1,11 +1,14 @@
-import React, {useState, useEffect, useLayoutEffect, useCallback} from 'react';
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import {GiftedChat} from 'react-native-gifted-chat';
+import { GiftedChat } from 'react-native-gifted-chat';
 import { collection, addDoc, orderBy, query, onSnapshot } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { auth, database } from '../config/firebase';
+import TypingIndicator from "react-native-gifted-chat/lib/TypingIndicator"
+import { render } from 'react-dom';
+import { State } from 'react-native-gesture-handler';
 
-export default function Chat({navigation}) {
+export default function Chat({ navigation }) {
     const [messages, setMessages] = useState([]);
 
     const onSignOut = () => {
@@ -16,7 +19,7 @@ export default function Chat({navigation}) {
             headerRight: () => (
                 <TouchableOpacity
                     style={{
-                        marginRight:10
+                        marginRight: 10
                     }}
                     onPress={onSignOut}
                 >
@@ -46,7 +49,8 @@ export default function Chat({navigation}) {
         setMessages(previousMessages =>
             GiftedChat.append(previousMessages, messages)
         );
-        const {_id, createdAt, text, user} = messages[0];
+        setIsTyping(false);
+        const { _id, createdAt, text, user } = messages[0];
         addDoc(collection(database, 'chats'), {
             _id,
             createdAt,
@@ -55,8 +59,22 @@ export default function Chat({navigation}) {
         });
     }, []);
 
-    return(
+    const [isTyping, setIsTyping] = useState(false);
+    const [customText, setCustomText] = useState('');
+
+    return (
         <GiftedChat
+            text={customText}
+            onInputTextChanged={(text) => {
+                console.log('toast');
+                if (text != '') {
+                    setIsTyping(true);
+                } else {
+                    setIsTyping(false);
+                }
+                // setIsTyping(!isTyping);
+                setCustomText(text)
+            }}
             messages={messages}
             showAvatarForEveryMessage={true}
             onSend={messages => onSend(messages)}
@@ -64,7 +82,8 @@ export default function Chat({navigation}) {
                 _id: auth?.currentUser?.email,
                 avatar: 'https://i.pravatar.cc/700',
             }}
-            isTyping={true}
+            isTyping={isTyping}
         ></GiftedChat>
     );
+
 }

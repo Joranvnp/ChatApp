@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12
     },
     title: {
-        fontsize: 24,
+        size: 24,
         fontWeight: '600',
         color:'black',
         alignSelf: 'center',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: 'white',
         marginBottom: 20,
-        fontsize: 16,
+        size: 16,
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 8,

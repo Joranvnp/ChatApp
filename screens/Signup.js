@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 12
     },
     title: {
-      fontSize: 24,
+      size: 24,
       fontWeight: '600',
       color: '#444',
       alignSelf: 'center',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     input: {
       backgroundColor: '#fff',
       marginBottom: 20,
-      fontSize: 16,
+      size: 16,
       borderWidth: 1,
       borderColor: '#333',
       borderRadius: 8,
